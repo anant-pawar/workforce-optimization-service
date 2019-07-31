@@ -21,13 +21,13 @@ public class WOService {
         while (remainingRoomCapacity > 0) {
 
             if (remainingRoomCapacity <= juniorCleanerCapacity) {
-                cleaningTeam.setJuniorCleaners(cleaningTeam.getJuniorCleaners() + 1);
+                cleaningTeam.addJuniorCleaner( 1);
                 remainingRoomCapacity -= juniorCleanerCapacity;
                 break;
             }
 
             if (remainingRoomCapacity <= seniorCleanerCapacity) {
-                cleaningTeam.setSeniorCleaners(cleaningTeam.getSeniorCleaners() + 1);
+                cleaningTeam.addSeniorCleaner( 1);
                 remainingRoomCapacity -= juniorCleanerCapacity;
                 break;
             }
@@ -38,10 +38,10 @@ public class WOService {
 
             if (juniorCapacityMod == 0 || juniorCapacityDiv == seniorCapacityDiv) {
                 remainingRoomCapacity -= juniorCleanerCapacity * juniorCapacityDiv;
-                cleaningTeam.setJuniorCleaners(cleaningTeam.getJuniorCleaners() + juniorCapacityDiv);
+                cleaningTeam.addJuniorCleaner(juniorCapacityDiv);
             } else {
                 remainingRoomCapacity -= seniorCleanerCapacity * seniorCapacityDiv;
-                cleaningTeam.setSeniorCleaners(cleaningTeam.getSeniorCleaners() + seniorCapacityDiv);
+                cleaningTeam.addSeniorCleaner(seniorCapacityDiv);
             }
 
         }
