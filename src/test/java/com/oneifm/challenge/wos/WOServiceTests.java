@@ -30,7 +30,7 @@ public class WOServiceTests {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> primeNumbers() {
+    public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{
                 {
                         new CleaningJob(Arrays.asList(35, 21, 17, 28), 10, 6),
@@ -52,7 +52,7 @@ public class WOServiceTests {
     }
 
     @Test
-    public void testGetCleaningTeam() {
+    public void testGetCleaningTeamService() {
         Assert.assertEquals(this.expectedCleaningTeams, woService.getCleaningTeams(cleaningJob));
     }
 
