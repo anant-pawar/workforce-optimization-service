@@ -36,7 +36,7 @@ public class WOService {
             Integer seniorCapacityDiv = remainingRoomCapacity / seniorCleanerCapacity;
             Integer juniorCapacityDiv = remainingRoomCapacity / juniorCleanerCapacity;
 
-            if (juniorCapacityMod == 0 || juniorCapacityDiv == seniorCapacityDiv) {
+            if (juniorCapacityMod == 0 || juniorCapacityDiv.equals(seniorCapacityDiv)) {
                 remainingRoomCapacity -= juniorCleanerCapacity * juniorCapacityDiv;
                 cleaningTeam.addJuniorCleaner(juniorCapacityDiv);
             } else {

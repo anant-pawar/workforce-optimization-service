@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +40,10 @@ public class CleaningTeam {
         return cleaningTeam.seniorCleaners == this.seniorCleaners && cleaningTeam.juniorCleaners == this.juniorCleaners;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(seniorCleaners, juniorCleaners);
+    }
 
     @Override
     public String toString() {
