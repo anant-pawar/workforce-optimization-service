@@ -19,7 +19,7 @@
         <assertj.version>3.11.1</assertj.version>
         <swagger.version>2.9.2</swagger.version>
         <cucumber.version>4.7.1</cucumber.version>
-        <docker.image.prefix>springio</docker.image.prefix>
+        <docker.image.prefix>anantpawar</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -87,6 +87,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.4.0.905</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
