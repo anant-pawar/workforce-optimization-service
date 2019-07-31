@@ -33,7 +33,7 @@ public class WOServiceTests {
     public static Collection<Object[]> primeNumbers() {
         return Arrays.asList(new Object[][]{
                 {
-                        new CleaningJob(Arrays.asList(35, 21, 17, 28), 11, 6),
+                        new CleaningJob(Arrays.asList(35, 21, 17, 28), 10, 6),
                         Arrays.asList(
                                 new CleaningTeam(3, 1),
                                 new CleaningTeam(1, 2),
