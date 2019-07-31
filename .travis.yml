@@ -1,5 +1,8 @@
 language: java
 
+before_install:
+  - chmod +x mvnw
+
 script:
   ./mvnw clean install
   ./mvnw sonar:sonar
