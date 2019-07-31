@@ -10,35 +10,36 @@ import java.util.List;
 @Service
 public class WOService {
 
-    private CleaningTeam getCleaningTeam(Integer roomCapacity, Integer seniorCleanerCapacity, Integer juniorCleanerCapacity) {
+    private CleaningTeam getCleaningTeam(Integer remainingRoomCapacity, Integer seniorCleanerCapacity, Integer juniorCleanerCapacity) {
         CleaningTeam cleaningTeam = new CleaningTeam();
 
-        roomCapacity -= seniorCleanerCapacity;
+        // allocate minimum one senior cleaner
+        remainingRoomCapacity -= seniorCleanerCapacity;
         cleaningTeam.setSeniorCleaners(1);
 
-        while (roomCapacity > 0) {
+        while (remainingRoomCapacity > 0) {
 
-            if (roomCapacity <= juniorCleanerCapacity) {
+            if (remainingRoomCapacity <= juniorCleanerCapacity) {
                 cleaningTeam.setJuniorCleaners(cleaningTeam.getJuniorCleaners() + 1);
-                roomCapacity -= juniorCleanerCapacity;
+                remainingRoomCapacity -= juniorCleanerCapacity;
                 break;
             }
 
-            if (roomCapacity <= seniorCleanerCapacity) {
+            if (remainingRoomCapacity <= seniorCleanerCapacity) {
                 cleaningTeam.setSeniorCleaners(cleaningTeam.getSeniorCleaners() + 1);
-                roomCapacity -= juniorCleanerCapacity;
+                remainingRoomCapacity -= juniorCleanerCapacity;
                 break;
             }
 
-            Integer juniorCapacityMod = roomCapacity % juniorCleanerCapacity;
-            Integer seniorCapacityDiv = roomCapacity / seniorCleanerCapacity;
-            Integer juniorCapacityDiv = roomCapacity / juniorCleanerCapacity;
+            Integer juniorCapacityMod = remainingRoomCapacity % juniorCleanerCapacity;
+            Integer seniorCapacityDiv = remainingRoomCapacity / seniorCleanerCapacity;
+            Integer juniorCapacityDiv = remainingRoomCapacity / juniorCleanerCapacity;
 
             if (juniorCapacityMod == 0 || juniorCapacityDiv == seniorCapacityDiv) {
-                roomCapacity -= juniorCleanerCapacity * juniorCapacityDiv;
+                remainingRoomCapacity -= juniorCleanerCapacity * juniorCapacityDiv;
                 cleaningTeam.setJuniorCleaners(cleaningTeam.getJuniorCleaners() + juniorCapacityDiv);
             } else {
-                roomCapacity -= seniorCleanerCapacity * seniorCapacityDiv;
+                remainingRoomCapacity -= seniorCleanerCapacity * seniorCapacityDiv;
                 cleaningTeam.setSeniorCleaners(cleaningTeam.getSeniorCleaners() + seniorCapacityDiv);
             }
 
