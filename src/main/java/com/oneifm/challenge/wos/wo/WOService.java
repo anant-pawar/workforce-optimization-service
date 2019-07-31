@@ -1,5 +1,6 @@
 package com.oneifm.challenge.wos.wo;
 
+import com.oneifm.challenge.wos.wo.exceptions.InvalidInputException;
 import com.oneifm.challenge.wos.wo.model.CleaningJob;
 import com.oneifm.challenge.wos.wo.model.CleaningTeam;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,10 @@ public class WOService {
         return cleaningTeam;
     }
 
-    public List<CleaningTeam> getCleaningTeams(CleaningJob cleaningJob) {
+    public List<CleaningTeam> getCleaningTeams(CleaningJob cleaningJob) throws InvalidInputException {
+        if(cleaningJob.getRoomCapacities().size() > 100)
+            throw new InvalidInputException(InvalidInputException.INVALID_ROOM_NUMBER);
+
         List<CleaningTeam> cleaningTeams = new ArrayList<>();
 
         for (Integer roomCapacity : cleaningJob.getRoomCapacities())

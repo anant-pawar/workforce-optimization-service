@@ -3,6 +3,8 @@ package com.oneifm.challenge.wos.wo;
 import com.oneifm.challenge.wos.wo.model.CleaningJob;
 import com.oneifm.challenge.wos.wo.model.CleaningTeam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,8 @@ public class WOController {
     WOService woService;
 
     @PostMapping("team")
-    public List<CleaningTeam> getCleaningTeams(@RequestBody CleaningJob cleaningJob) {
-        return woService.getCleaningTeams(cleaningJob);
+    public ResponseEntity<?> getCleaningTeams(@RequestBody CleaningJob cleaningJob) {
+        return new ResponseEntity<List<CleaningTeam>>(woService.getCleaningTeams(cleaningJob), HttpStatus.OK);
     }
 
 }

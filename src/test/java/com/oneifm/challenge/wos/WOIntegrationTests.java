@@ -16,6 +16,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +47,8 @@ public class WOIntegrationTests {
                       .consumeWith(response -> {
                           try {
                               Assert.assertEquals(
-                                      objectMapper.readValue(response.getResponseBodyContent(), new TypeReference<List<CleaningTeam>>() {}),
+                                      objectMapper.readValue(response.getResponseBodyContent(), new TypeReference<List<CleaningTeam>>() {
+                                      }),
                                       expectedCleaningTeams
                               );
                           } catch (JsonParseException e) {
@@ -57,5 +59,21 @@ public class WOIntegrationTests {
                               Assert.fail(e.getMessage());
                           }
                       });
+    }
+
+    @Test
+    public void testGetCleaningTeamAPIBadRequest() {
+        ArrayList rooms = new ArrayList();
+
+        for (int i = 0; i < 110; i++) {
+            rooms.add(i);
+        }
+
+        this.webClient.post()
+                      .uri("api/wo/team")
+                      .body(BodyInserters.fromObject(new CleaningJob(rooms, 10, 6)))
+                      .exchange()
+                      .expectStatus()
+                      .isBadRequest();
     }
 }
