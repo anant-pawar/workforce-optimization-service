@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice(assignableTypes  = WOController.class)
 public class WOControllerAdvice {
     @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<?> handleRunTimeException(RuntimeException exception) {
+    public ResponseEntity<WOError> handleRunTimeException(RuntimeException exception) {
         return new ResponseEntity<WOError>(new WOError(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({InvalidInputException.class})
-    public ResponseEntity<?> handleInvalidInputException(InvalidInputException exception) {
+    public ResponseEntity<WOError> handleInvalidInputException(InvalidInputException exception) {
         return new ResponseEntity<WOError>(new WOError(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
