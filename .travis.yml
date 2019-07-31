@@ -7,6 +7,12 @@ cache:
   directories:
   - $HOME/.m2
 
+addons:
+  sonarcloud:
+    organization: "anant-pawar-github"
+    token:
+      secure: "*********"
+
 script:
   - ./mvnw clean install
-  - ./mvnw sonar:sonar
+  - ./mvnw sonar:sonar -Dsonar.projectKey=anant-pawar_workforce-optimization-service -Dsonar.host.url=https://sonarcloud.io
