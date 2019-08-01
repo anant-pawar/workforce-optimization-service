@@ -33,7 +33,7 @@ This app exposes the apis for getting optimal team for provided cleaning job.
       ]
    ```
 
-**Publish Sonar Results** : *mvnw.cmd clean install sonar:sonar -Dsonar.projectKey={projectKey}  -Dsonar.organization={organization}  -Dsonar.host.url={host}  -Dsonar.login={login}
+**Publish Sonar Results** : *mvnw.cmd clean install sonar:sonar -Dsonar.projectKey={projectKey}  -Dsonar.organization={organization}  -Dsonar.host.url={host}  -Dsonar.login={login}*
 
 **Build Docker Container** : *mvnw.cmd clean install dockerfile:build*
 
