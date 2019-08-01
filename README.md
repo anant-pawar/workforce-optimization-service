@@ -42,9 +42,9 @@ This app exposes the apis for getting optimal team for provided cleaning job.
     * [WOS Docker Hub](https://cloud.docker.com/u/anantpawar/repository/docker/anantpawar/workforce-optimization-service) 
 
 # Live Instance
-Have hosted the app on a EC2 instance(has attached elastic ip *35.158.246.149*). 
+Have hosted the app on a EC2 instance(has attached elastic ip *35.158.246.194*). 
 
-**API Documentation** [WOS Live Service](http://35.158.246.149:8080/api/swagger-ui.html)
+**API Documentation** [WOS Live Service](http://35.158.246.194:8080/api/swagger-ui.html)
 
 ### Guides
 Refereed following guide's for development:
