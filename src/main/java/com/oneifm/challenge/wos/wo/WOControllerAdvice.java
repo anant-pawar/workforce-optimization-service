@@ -17,13 +17,13 @@ public class WOControllerAdvice {
     public ResponseEntity<WOError> handleRunTimeException(RuntimeException exception) {
         LOGGER.severe(exception.getMessage());
 
-        return new ResponseEntity<WOError>(new WOError(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new WOError(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({InvalidInputException.class})
     public ResponseEntity<WOError> handleInvalidInputException(InvalidInputException exception) {
         LOGGER.severe(exception.getMessage());
 
-        return new ResponseEntity<WOError>(new WOError(exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new WOError(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

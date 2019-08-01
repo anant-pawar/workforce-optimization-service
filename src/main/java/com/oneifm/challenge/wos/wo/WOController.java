@@ -20,7 +20,7 @@ public class WOController {
 
     @PostMapping("team")
     public ResponseEntity<List<CleaningTeam>> getCleaningTeams(@RequestBody CleaningJob cleaningJob) {
-        return new ResponseEntity<List<CleaningTeam>>(woService.getCleaningTeams(cleaningJob), HttpStatus.OK);
+        return new ResponseEntity<>(woService.getCleaningTeams(cleaningJob), HttpStatus.OK);
     }
 
 }
