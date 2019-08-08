@@ -12,8 +12,6 @@ public class CleaningJob {
     @JsonProperty("junior")
     private Integer juniorCleanerCapacity;
 
-    public CleaningJob(){}
-
     public CleaningJob(List<Integer> roomCapacities, Integer seniorCleanerCapacity,Integer juniorCleanerCapacity){
         this.roomCapacities = roomCapacities;
         this.seniorCleanerCapacity = seniorCleanerCapacity;

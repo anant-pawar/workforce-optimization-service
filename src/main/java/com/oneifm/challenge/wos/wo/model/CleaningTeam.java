@@ -57,27 +57,18 @@ public class CleaningTeam {
         return super.toString();
     }
 
-    public void addSeniorCleaner(Integer seniorCleaners){
-        this.seniorCleaners += seniorCleaners;
-    }
-
-    public void addJuniorCleaner(Integer juniorCleaners){
-        this.juniorCleaners += juniorCleaners;
+    public CleaningTeam plus(CleaningTeam cleaningTeam){
+        this.seniorCleaners += cleaningTeam.seniorCleaners;
+        this.juniorCleaners += cleaningTeam.juniorCleaners;
+        return this;
     }
 
     public Integer getSeniorCleaners() {
         return seniorCleaners;
     }
 
-    public void setSeniorCleaners(Integer seniorCleaners) {
-        this.seniorCleaners = seniorCleaners;
-    }
-
     public Integer getJuniorCleaners() {
         return juniorCleaners;
     }
 
-    public void setJuniorCleaners(Integer juniorCleaners) {
-        this.juniorCleaners = juniorCleaners;
-    }
 }

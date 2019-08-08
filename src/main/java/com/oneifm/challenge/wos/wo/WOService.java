@@ -11,42 +11,28 @@ import java.util.List;
 @Service
 public class WOService {
 
-    private CleaningTeam getCleaningTeam(Integer remainingRoomCapacity, Integer seniorCleanerCapacity, Integer juniorCleanerCapacity) {
-        CleaningTeam cleaningTeam = new CleaningTeam();
+    private CleaningTeam getCleaningTeam(Integer roomCapacity, Integer seniorCleanerCapacity, Integer juniorCleanerCapacity) {
+        CleaningTeam[] cleaningTeams = new CleaningTeam[roomCapacity + 1];
+        for(int i = 1; i <= roomCapacity ; i++){
 
-        // allocate minimum one senior cleaner
-        remainingRoomCapacity -= seniorCleanerCapacity;
-        cleaningTeam.setSeniorCleaners(1);
+            Integer capacityToFillWithOneSenior = i - seniorCleanerCapacity;
+            Integer capacityToFillWithOneJunior = i - juniorCleanerCapacity;
 
-        while (remainingRoomCapacity > 0) {
-
-            if (remainingRoomCapacity <= juniorCleanerCapacity) {
-                cleaningTeam.addJuniorCleaner( 1);
-                remainingRoomCapacity -= juniorCleanerCapacity;
-                break;
-            }
-
-            if (remainingRoomCapacity <= seniorCleanerCapacity) {
-                cleaningTeam.addSeniorCleaner( 1);
-                remainingRoomCapacity -= juniorCleanerCapacity;
-                break;
-            }
-
-            Integer juniorCapacityMod = remainingRoomCapacity % juniorCleanerCapacity;
-            Integer seniorCapacityDiv = remainingRoomCapacity / seniorCleanerCapacity;
-            Integer juniorCapacityDiv = remainingRoomCapacity / juniorCleanerCapacity;
-
-            if (juniorCapacityMod == 0 || juniorCapacityDiv.equals(seniorCapacityDiv)) {
-                remainingRoomCapacity -= juniorCleanerCapacity * juniorCapacityDiv;
-                cleaningTeam.addJuniorCleaner(juniorCapacityDiv);
-            } else {
-                remainingRoomCapacity -= seniorCleanerCapacity * seniorCapacityDiv;
-                cleaningTeam.addSeniorCleaner(seniorCapacityDiv);
-            }
-
+            if (i < seniorCleanerCapacity)
+                cleaningTeams[i] = new CleaningTeam(1, 0);
+            else if (i < seniorCleanerCapacity + juniorCleanerCapacity)
+                cleaningTeams[i] = new CleaningTeam(1, 1);
+            else if (roomCapacity % seniorCleanerCapacity == 0)
+                cleaningTeams[i] = new CleaningTeam(roomCapacity / seniorCleanerCapacity, 0);
+            else if (capacityToFillWithOneSenior % juniorCleanerCapacity == 0)
+                cleaningTeams[i] = new CleaningTeam(1, capacityToFillWithOneSenior / juniorCleanerCapacity);
+            else if (capacityToFillWithOneSenior % juniorCleanerCapacity > capacityToFillWithOneSenior % seniorCleanerCapacity)
+                cleaningTeams[i] = new CleaningTeam(0, 1).plus(cleaningTeams[capacityToFillWithOneJunior]);
+            else
+                cleaningTeams[i] = new CleaningTeam(1, 0).plus(cleaningTeams[capacityToFillWithOneSenior]);
         }
 
-        return cleaningTeam;
+        return cleaningTeams[roomCapacity];
     }
 
     public List<CleaningTeam> getCleaningTeams(CleaningJob cleaningJob) throws InvalidInputException {
