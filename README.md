@@ -21,16 +21,16 @@ This app exposes the apis for getting optimal team for provided cleaning job.
    ```
   * Response Body:
    ```
-      [
-          {
-              "seniorCleaners": 2,
-              "juniorCleaners": 1
-          },
-          {
-              "seniorCleaners": 1,
-              "juniorCleaners": 3
-          }
-      ]
+   [
+       {
+           "seniorCleaners": 2,
+           "juniorCleaners": 1
+       },
+       {
+           "seniorCleaners": 1,
+           "juniorCleaners": 3
+       }
+   ]
    ```
 
 **Publish Sonar Results** : *mvnw.cmd clean install sonar:sonar -Dsonar.projectKey={projectKey}  -Dsonar.organization={organization}  -Dsonar.host.url={host}  -Dsonar.login={login}*
@@ -44,13 +44,8 @@ This app exposes the apis for getting optimal team for provided cleaning job.
 * perform and publish, code analysis and code coverage result to sonar cloud.
     * [WOS Sonar Report](https://sonarcloud.io/dashboard?id=anant-pawar_workforce-optimization-service)
 * build and publish docker container to docker hub
-    * [WOS Docker Hub](https://cloud.docker.com/u/anantpawar/repository/docker/anantpawar/workforce-optimization-service) 
+    * [WOS Docker Hub](https://cloud.docker.com/u/anantpawar/repository/docker/anantpawar/workforce-optimization-service)
 * deployment of docker container is done manually as of now.
-
-# Live Instance
-Have hosted the app on a EC2 instance(has attached elastic ip *35.158.246.194*).
-
-**API Documentation** [WOS Live Service](http://35.158.246.194:8080/api/swagger-ui.html)
 
 ### Guides
 Refereed following guide's for development:
